@@ -1,0 +1,20 @@
+# bot config
+
+server:
+ host: "example.com"
+ port: 6667
+ nick: "chelsea"
+ user: "chelsea"
+ realname: "chelsea"
+ password: "xxxxxxx"
+ channels:
+  - "#channel1" 
+  - "#channel2" 
+
+rss:
+ interval: 60
+ data_dir: "data"
+ rss_list:
+  - name: "xxxx"
+    url: "https://aaaa.bbb/ggggg.rss"
+   

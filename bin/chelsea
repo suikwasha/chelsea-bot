@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'bundler'
+require 'chelsea'
+
+Bundler.require
+
+config = YAML.load_file("config.yml")
+
+bot = Cinch::Bot.new do
+  configure do |c|
+    c.server = config['server']['host']
+    c.port = config['server']['port']
+    c.nick = config['server']['nick']
+    c.user = config['server']['user']
+    c.realname = config['server']['realname']
+    c.password = config['server']['password']
+    c.channels = config['server']['channels']
+    c.verbose = true
+
+    c.plugins.plugins = [Chelsea::RSS::RSSPlugin]
+    c.plugins.options[Chelsea::RSS::RSSPlugin] = config['rss']
+  end
+
+  on :message, /hello/ do |m|
+    m.reply "Hello, #{m.user.nick}"
+  end
+end
+
+bot.start
+
