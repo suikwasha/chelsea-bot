@@ -18,7 +18,7 @@ module Chelsea::RSS
       load_state
     end
 
-    timer 5, method: :execute
+    timer 60, method: :execute
 
     def load_state
       if File.exist?(@rss_plugin_data_file)
@@ -57,7 +57,7 @@ module Chelsea::RSS
         begin 
           update_then_notify(rss_info)
         rescue => e
-          broadcast("更新中にエラーが発生しました.")
+          broadcast("error occurred while updating #{rss_info['name']}")
           debug e.inspect
           debug e.backtrace
           rss_info
